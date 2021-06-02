@@ -1,10 +1,14 @@
+import {BrowserRouter as Router } from 'react-router-dom';
+import Routes from './routes';
+import history from '../src/services/history';
+
 
 function App() {
-  return <>
-      <div>
-        <h1>This is my first React</h1>
-      </div>
-   </>
+  return (
+    <Router history={history}>
+      <Routes />
+    </Router>
+  );
 }
 
 export default App;
