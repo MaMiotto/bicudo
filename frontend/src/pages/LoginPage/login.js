@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { AppBar, Toolbar, Typography, TextField, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
+import HeaderOff from '../../components/headerOff';
+
 function Login(){
 
     const history = useHistory();
@@ -27,25 +29,13 @@ function Login(){
         setValues({showPassword: !values.showPassword})
     }
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
     const handleClickCadastrar = (props, context) => {
         history.push("/cadastro")
     };
 
     return(
         <div>
-            <AppBar position="static">
-                <Toolbar>
-                <Typography variant="h6" style={{width:"90%"}} >
-                    Bicudo
-                </Typography>
-                <Button color="inherit">Início</Button>
-                <Button color="inherit">Entrar</Button>
-                </Toolbar>
-            </AppBar>
+            <HeaderOff/>
             <div>
                 <S.bemVindo>Bem-vindo de volta!</S.bemVindo>
             </div>
