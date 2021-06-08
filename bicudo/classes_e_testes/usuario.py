@@ -50,7 +50,7 @@ class Usuario:
         if endereco: self.altera_endereco(endereco)
         
     def pega_endereco(self):
-        return endereco
+        return self.endereco
         
     def pega_nome_completo(self):
         return (self.primeiro_nome+" "+self.segundo_nome)
@@ -69,4 +69,4 @@ class Usuario:
         return(dados_pessoais+contato)
         
     def pega_item_usuario(self):
-        return (self.id_usuario, self.primeiro_nome, self.segundo_nome, self.cpf, self.data_nascimento, self.genero, self.telefone, self.endereco)
+        return (self.id_usuario, self.primeiro_nome, self.segundo_nome, self.cpf, self.data_nascimento, self.genero, self.telefone,self.email,self.endereco)

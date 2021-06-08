@@ -20,20 +20,20 @@ class TestUsuario(unittest.TestCase):
         
     def test_pega_item_usuario(self):
         logradouro,numero,complemento,bairro,cidade,estado,cep = self.endereco.pega_itens_endereco()
-        id_usuario, primeiro_nome, segundo_nome, cpf, data_nascimento, genero, telefone, endereco = self.usuario.pega_item_usuario()
-        self.assertEquals(10,self.usuario.id_usuario)
-        self.assertEquals("Joao",self.usuario.primeiro_nome)
-        self.assertEquals("Pedro",self.usuario.segundo_nome)
-        self.assertEquals("000.000.000-01",self.usuario.cpf)
-        self.assertEquals("01/01/2000",self.usuario.data_nascimento)
-        self.assertEquals("Masculino",self.usuario.genero)
-        self.assertEquals("(31)99999-9999",self.usuario.telefone)
-        self.assertEquals("jp@x.com",self.usuario.email)
-        self.assertEquals(self.endereco,self.usuario.endereco)
+        id_usuario, primeiro_nome, segundo_nome, cpf, data_nascimento, genero, telefone, email, endereco = self.usuario.pega_item_usuario()
+        self.assertEquals(10,id_usuario)
+        self.assertEquals("Joao",primeiro_nome)
+        self.assertEquals("Pedro",segundo_nome)
+        self.assertEquals("000.000.000-01",cpf)
+        self.assertEquals("01/01/2000",data_nascimento)
+        self.assertEquals("Masculino",genero)
+        self.assertEquals("(31)99999-9999",telefone)
+        self.assertEquals("jp@x.com",email)
+        self.assertEquals(self.endereco,endereco)
         
     def test_pega_endereco(self):
-        endereco = self.usuario.endereco
-        self.assertEquals(self.endereco,self.usuario.endereco)
+        endereco = self.usuario.pega_endereco()
+        self.assertEquals(endereco,self.endereco)
         
     def test_pega_dados(self):
         texto = "Joao Pedro\nCPF: 000.000.000-01\nData de nascimento: 01/01/2000\nGenero: Masculinoe-mail: jp@x.com - telefone: (31)99999-9999"
