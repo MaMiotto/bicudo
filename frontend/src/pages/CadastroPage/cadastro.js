@@ -4,7 +4,6 @@ import * as S from './styled';
 import { TextField, Select, MenuItem, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
-import HeaderOff from '../../components/headerOff';
 
 function Cadastro(){
 
@@ -36,7 +35,6 @@ function Cadastro(){
 
     return(
         <div>
-            <HeaderOff/>
             <S.titulo>Cadastro</S.titulo>
             <form noValidate autoComplete="off" style={{width:800, margin:"auto"}}>
                 <fieldset style={{width:"100%"}}>

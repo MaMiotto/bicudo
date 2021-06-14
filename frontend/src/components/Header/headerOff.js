@@ -1,7 +1,7 @@
 import {AppBar, Toolbar, Typography, Button} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 
-function HeaderOff (){
+function HeaderOff(){
 
     const history = useHistory();
 

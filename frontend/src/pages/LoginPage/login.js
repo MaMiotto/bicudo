@@ -2,10 +2,8 @@ import React from 'react';
 import * as S from './styled';
 import { useHistory } from "react-router-dom";
 
-import { AppBar, Toolbar, Typography, TextField, InputAdornment, IconButton, Button } from '@material-ui/core';
+import { TextField, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
-
-import HeaderOff from '../../components/headerOff';
 
 function Login(){
 
@@ -35,7 +33,6 @@ function Login(){
 
     return(
         <div>
-            <HeaderOff/>
             <div>
                 <S.bemVindo>Bem-vindo de volta!</S.bemVindo>
             </div>
