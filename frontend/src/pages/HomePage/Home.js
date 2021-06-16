@@ -1,49 +1,36 @@
 import React from 'react';
 import ImageContent from '../../components/Image';
 import Worker from '../../images/worker.jpg';
-import bicudo from '../../images/bicudo.png';
 import * as S from './styled';
 import SimpleText from '../../components/TextDisplay/SimpleText';
+import { Divider } from '@material-ui/core';
+import Detail from './Detail';
+import { textObject, infoTexts } from './constants';
 
 function Home(){
-
-    const textObject = [
-        {
-            text: 'Profissionais Capazes e Verificados',
-            image:  bicudo,
-        },
-        {
-            text: 'Pagemento online ou na hora do Serviço',
-            image: bicudo,
-        },
-        {
-            text: 'Serviço Garantidio pelos Profissionais',
-            image: bicudo,
-        }
-    ]
-
     return(
+        <>
         <S.Container>
             <S.GridContent container spacing={2}>
                 <S.GridItem item xs={6}> 
-                    <S.GridItems container spacing={1}>
-                        <S.GridItems item xs={12}>
-                            <S.Title>Uma nova Forma De Contratar Profissionais<br></br>
+                    <S.GridItem container spacing={1}>
+                        <S.GridItem item xs={12}>
+                            <S.Title>Uma Nova Forma De Contratar Profissionais<br></br>
                                     Sem Sair de Casa
                             </S.Title>
-                        </S.GridItems>
-                        <S.GridItems item xs={12}>
+                        </S.GridItem>
+                        <S.GridItem item xs={12}>
                             <S.Text>
                                 Quer entender como a gente funcionar ???<br></br>
                                 <S.TextButton>Clicar Aqui</S.TextButton>
                             </S.Text>
-                        </S.GridItems>
+                        </S.GridItem>
                         {textObject.map((item, index)=>
-                           <S.GridItems  item xs={4} key={index}>
+                           <S.GridItem item xs={4} key={index}>
                                <SimpleText text={item.text} image={item.image} />
-                           </S.GridItems>    
+                           </S.GridItem>    
                         )}
-                    </S.GridItems>
+                    </S.GridItem>
                 </S.GridItem>
                 <S.GridItem  item xs={6}>
                     <ImageContent
@@ -51,7 +38,14 @@ function Home(){
                     />
                 </S.GridItem>
             </S.GridContent>
+            <Divider/>
+            <Detail data={infoTexts}/>
+            <Divider/>
         </S.Container>
+        <S.Footer>
+
+        </S.Footer>
+        </>
     )
 }
 

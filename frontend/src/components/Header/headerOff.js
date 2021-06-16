@@ -14,7 +14,7 @@ function HeaderOff(){
     };
 
     return(
-        <AppBar position="static">
+        <AppBar position="static" style={{background: '#0080ff'}}>
             <Toolbar>
             <Typography variant="h6" style={{width:"90%"}} >
                 Bicudo

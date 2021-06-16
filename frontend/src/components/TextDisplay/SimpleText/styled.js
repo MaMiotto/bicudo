@@ -30,5 +30,6 @@ export const Image = styled.img`
 export const TextDivider = styled(Divider)`
     width: 20%;
     margin-left: 15px;
-    background: blue;
+    background:  #0080ff;
+    margin-bottom: 10px;
 `
