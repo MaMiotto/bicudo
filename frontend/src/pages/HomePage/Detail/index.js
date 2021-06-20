@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, Divider } from '@material-ui/core';
 import React from 'react';
 import * as S from './styeld';
 import InfoCard from '../../../components/InfoCards/InfoCard';
@@ -15,8 +15,9 @@ function Detail({data}){
             serviço, atendendo com qualidade, facilidade e rapidez todos os
             tipos de necessidade. No momento estamos focando em serviço de casa.
           </S.Info>
+          <Divider/>
           <S.InfoWrapper>
-            <S.InfoTitle>Como Funciona???</S.InfoTitle>
+            <S.InfoTitle>Como Funciona</S.InfoTitle>
           </S.InfoWrapper>
           <Grid container spacing={2}>
             {data.map((item, index) => 

@@ -10,7 +10,7 @@ export const Title = styled.h1`
 export const Container = styled.div`
    display: flex;
    flex-direction: column;
-   margin-bottom: 50px
+   margin-bottom: 20px
 `
 
 export const Header = styled.div`
@@ -26,16 +26,24 @@ export const GridItem = styled(Grid)`
 `
 
 export const Text = styled.p`
-    font-size: 20px;
+    font-size: 18px;
     font-weigth:bold;
     margin: 20px 0px 75px 5px;
 `
 
 export const TextButton = styled(Button)`
+    color: #ffffff;
+    background: #0080ff;
 
 `
 
 export const Footer = styled.div`
    display: flex;
    flex-direction: row;
+`
+
+export const FooterText = styled.p`
+   left: 0px;
+   font-size: 15px;
+
 `
