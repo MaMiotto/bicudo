@@ -7,3 +7,8 @@ export const bemVindo = styled.h1`
    text-align: center;
    padding-top: 30px;
 `
+
+export const msgErro = styled.p`
+   text-align: center;
+   color: #f00;   
+`

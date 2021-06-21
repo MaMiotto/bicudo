@@ -1,35 +1,74 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as S from './styled';
 import { useHistory } from "react-router-dom";
+import api from '../../services/api';
 
 import { TextField, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+
+
 
 function Login(){
 
     const history = useHistory();
 
-    const [values, setValues] = React.useState({
-        email: '',
-        password: '',
-        showPassword: false,
-    });
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isInputEmailValid, setIsInputEmailValid] = useState(true);
+    const [isInputPasswordValid, setIsInputPasswordValid] = useState(true);
+    const [areCredentialsValid, setAreCredentialsValid] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleEmailChange = (event) => {
-        setValues({email:event.target.value});
+        setEmail(event.target.value);
+        setIsInputEmailValid(true);
+        setAreCredentialsValid(true);
     }
 
     const handlePasswordChange = (event) => {
-        setValues({password:event.target.value});
+        setPassword(event.target.value);
+        setIsInputPasswordValid(true);
+        setAreCredentialsValid(true);
     }
 
     const handleClickShowPassword = (event) => {
-        setValues({showPassword: !values.showPassword})
+        setShowPassword(!showPassword);
     }
 
     const handleClickCadastrar = (props, context) => {
         history.push("/cadastro")
     };
+
+    const handleClickLogin = (event) => {
+        validaCampos();
+    }
+
+    const validaCampos = () => {
+        if(email == null || email.length == 0){ //Valida se o campo Email está em branco
+            setIsInputEmailValid(false);
+            return false;
+        } else if(password == null || password.length == 0){ //Valida se o campo Senha está em branco
+            setIsInputPasswordValid(false);
+            return false;
+        }
+
+        //Validar o par usuário/senha no banco
+        try {
+            //const response = await api.post('/login', {email:values.email, senha:values.password});
+            const response = {data:{msg:"Login Válido!"}}
+            //const response = {data:{error:"Credenciais Inválidas!"}}
+            if(response.data.hasOwnProperty('msg') && response.data.msg == "Login Válido!"){
+                history.push('/home');
+            } else{
+                setAreCredentialsValid(false);
+            }           
+
+        } catch (err) {
+            setAreCredentialsValid(false);
+        }
+
+
+    }
 
     return(
         <div>
@@ -39,21 +78,26 @@ function Login(){
             <form noValidate autoComplete="off" style={{width:450, margin:"auto"}}>
                 <fieldset>
                     <br/>
+                    {areCredentialsValid == false && <S.msgErro>Email/Senha Inválidos</S.msgErro>}
                     <TextField 
                         id="email" 
                         label="Email"
                         onChange={handleEmailChange} 
                         variant="outlined"
+                        error={isInputEmailValid == false}
+                        helperText={isInputEmailValid == false ? "Campo Obrigatório" : ""}
                         style={{width:"60%", marginLeft:"20%", marginBottom:25}}
                     />
                     <br/>
                     <TextField
                         id="outlined-password-input"
                         label="Password"
-                        type={values.showPassword ? 'text' : 'password'}
+                        type={showPassword ? 'text' : 'password'}
                         variant="outlined"
                         onChange={handlePasswordChange}
                         autoComplete="current-password"
+                        error={isInputPasswordValid == false}
+                        helperText={isInputPasswordValid  == false ? "Campo Obrigatório" : ""}
                         style={{width:"60%", marginLeft:"20%", marginBottom:25}}
                         InputProps={{
                             endAdornment: (
@@ -64,7 +108,7 @@ function Login(){
                                 onMouseDown={handleClickShowPassword}
                                 edge="end"
                                 >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                {showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                             ),
@@ -75,7 +119,9 @@ function Login(){
                     variant="contained" 
                     color="primary" 
                     disableElevation
-                    style={{width:"60%", height:55, marginLeft:"20%"}}>
+                    style={{width:"60%", height:55, marginLeft:"20%"}}
+                    onClick={handleClickLogin}
+                    >
                         Enviar
                     </Button>
                     <br/><br/>
