@@ -40,7 +40,10 @@ function Login(){
     };
 
     const handleClickLogin = (event) => {
-        validaCampos();
+        if(validaCampos()){
+            history.push('/home');
+        }
+        setAreCredentialsValid(false);
     }
 
     const validaCampos = () => {
@@ -58,15 +61,14 @@ function Login(){
             const response = {data:{msg:"Login Válido!"}}
             //const response = {data:{error:"Credenciais Inválidas!"}}
             if(response.data.hasOwnProperty('msg') && response.data.msg == "Login Válido!"){
-                history.push('/home');
-            } else{
-                setAreCredentialsValid(false);
-            }           
+                return true;
+            }       
 
         } catch (err) {
-            setAreCredentialsValid(false);
+            return false;
         }
 
+        return false;
 
     }
 

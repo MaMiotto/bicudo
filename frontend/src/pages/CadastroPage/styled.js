@@ -13,3 +13,8 @@ export const label = styled.legend`
     font-family: monospace;
     color: gray;
 `
+
+export const categorias = styled.p`
+    width:60%;
+    margin-left:20%;
+`
