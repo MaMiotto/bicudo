@@ -49,6 +49,9 @@ else:
     # from google.appengine.api.memcache import Client
     # session.connect(request, response, db = MEMDB(Client()))
     # ---------------------------------------------------------------------
+    
+from gluon import current
+current.db = db
 
 # -------------------------------------------------------------------------
 # by default give a view/generic.extension to all actions from localhost
@@ -87,6 +90,8 @@ response.form_label_separator = ''
 
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, host_names=configuration.get('host.names'))
+
+current.auth = auth
 
 # -------------------------------------------------------------------------
 # create all tables needed by auth, maybe add a list of extra fields
@@ -211,17 +216,34 @@ if configuration.get('scheduler.enabled'):
 # >>> for row in rows: print row.id, row.myfield
 # -------------------------------------------------------------------------
 
+STATUS = {
+    1:"Solicitacao",
+    2:"Agendamento",
+    3:"Confirmado",
+    4:"Finalizado",
+    5:"Recusado"
+}
+
 db.define_table('tipo_servico',
                 Field('nome','string',requires=[IS_NOT_EMPTY(),IS_NOT_IN_DB(db,'tipo_servico.nome')]),
                 format='%(nome)s'
     )
 
 db.define_table('servico',
-                Field('prestador',db.auth_user,writable=False,default=session.auth.user.id if session.auth else None),
+                Field('prestador',db.auth_user,writable=False,default=session.auth.user.id if session.auth else None, unique=True),
                 #Field('prestador',db.auth_user,writable=False),
                 #Field('tipo','list:reference tipo_servico',requires=IS_IN_DB(db, 'tipo_servico.id',db.tipo_servico._format, multiple=True)),
                 Field('tipos','list:reference tipo_servico'),
                 Field('descricao','text',requires=IS_NOT_EMPTY())
+    )
+
+db.define_table('solicitacao',
+                Field('cliente',db.auth_user,writable=False,default=session.auth.user.id if session.auth else None),
+                Field('prestador',db.auth_user),
+                Field('tipo','list:reference tipo_servico'),
+                Field('status','integer',requires=IS_IN_SET(STATUS),represent = lambda v,r: ESTADO[v],default=1),
+                Field('disponibilidade','string',requires=IS_NOT_EMPTY()), #descreve disponibilidade para ontado ou visita
+                Field('agendamento','string') #descreve resposta de agendamento
     )
 
 # se tabela de usuários está vazia cria grupos e usuário administrador

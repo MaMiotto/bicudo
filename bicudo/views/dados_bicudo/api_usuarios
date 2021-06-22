@@ -1,0 +1,5 @@
+{{extend 'layout.html'}}
+<script>
+$.getJSON('/bicudo_teste2/dados_bicudo/api_usuarios',
+          function(data){ alert(data); });
+</script>

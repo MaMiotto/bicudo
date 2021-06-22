@@ -1,0 +1,54 @@
+{{extend 'layout.html'}}
+<h2>{{=txt}}</h2>
+
+<form enctype="multipart/form-data"
+  action="{{=URL('dados_bicudo','insert_usuario')}}" method="post"> <!--{{#or use =form.custom.begin}}-->
+     <div class="form-group">
+          <input type="text" class="form-control" name="primeiro_nome" value="Pedro">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="segundo_nome" value="Paulo">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="cpf" value="111.111.111-11">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="genero" value=1>
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="data_nascimento" value="01/010/2000">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="telefone" value="(99)99999-9991">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="email" value="pp@x.com">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="logradouro" value="Avenida Dois">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="numero" value="444B">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="complemento" value="apt. 301">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="bairro" value="Um">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="cidade" value="Qualquer">
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="estado" value=1>
+     </div>
+     <div class="form-group">
+          <input type="text" class="form-control" name="cep" value="11111-111">
+     </div>
+     <div class="form-group">
+          <input type="password" class="form-control" name="senha" value="123456">
+     </div>
+     <button type="submit">
+           Submit
+     </button>
+</form> 
