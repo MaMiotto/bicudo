@@ -1,4 +1,4 @@
-import aux
+import auxi
 from classes.usuario import Usuario
 from classes.endereco import Endereco
 from classes.servico import Servico
@@ -12,7 +12,7 @@ from datetime import date
 def dados_usuario(id_usuario=None):
     if not (id_usuario):
         id_usuario=session.auth.user.id 
-    usuario=aux.dados_usuario(id_usuario)
+    usuario=auxi.dados_usuario(id_usuario)
     print(usuario)
     return (usuario)
 
@@ -21,7 +21,7 @@ def dados_prestador(id_usuario=None):
     if not (id_usuario):
         id_usuario=session.auth.user.id
     usuario=dados_usuario(id_usuario)
-    servico=aux.dados_servico(usuario)
+    servico=auxi.dados_servico(usuario)
     if (servico):
         return (servico)
     else:
@@ -34,7 +34,7 @@ def dados_prestador(id_usuario=None):
 #----------------------------------------------------------------
 
 def dados_servicos():
-    todo_servico = aux.dados_todos_servicos
+    todo_servico = auxi.dados_todos_servicos
     return dict(todo_serviso=todo_servico)
 
 def usuario():
