@@ -48,10 +48,10 @@ function Login(){
     }
 
     async function validaCampos() {
-        if(email == null || email.length == 0){ //Valida se o campo Email está em branco
+        if(email === null || email.length === 0){ //Valida se o campo Email está em branco
             setIsInputEmailValid(false);
             return false;
-        } else if(password == null || password.length == 0){ //Valida se o campo Senha está em branco
+        } else if(password === null || password.length === 0){ //Valida se o campo Senha está em branco
             setIsInputPasswordValid(false);
             return false;
         }
@@ -59,7 +59,7 @@ function Login(){
         //Validar o par usuário/senha no banco
         try {
             const response = await api.post('/login/api', {email:email, senha:password});
-            if(response.data.hasOwnProperty('msg') && response.data.msg == "Login Válido!"){
+            if(response.data.hasOwnProperty('msg') && response.data.msg === "Login Válido!"){
                 return true;
             }       
 
@@ -79,14 +79,14 @@ function Login(){
             <form noValidate autoComplete="off" style={{width:450, margin:"auto"}}>
                 <fieldset>
                     <br/>
-                    {areCredentialsValid == false && <S.msgErro>Email/Senha Inválidos</S.msgErro>}
+                    {areCredentialsValid === false && <S.msgErro>Email/Senha Inválidos</S.msgErro>}
                     <TextField 
                         id="email" 
                         label="Email"
                         onChange={handleEmailChange} 
                         variant="outlined"
-                        error={isInputEmailValid == false}
-                        helperText={isInputEmailValid == false ? "Campo Obrigatório" : ""}
+                        error={isInputEmailValid === false}
+                        helperText={isInputEmailValid === false ? "Campo Obrigatório" : ""}
                         style={{width:"60%", marginLeft:"20%", marginBottom:25}}
                     />
                     <br/>
@@ -97,8 +97,8 @@ function Login(){
                         variant="outlined"
                         onChange={handlePasswordChange}
                         autoComplete="current-password"
-                        error={isInputPasswordValid == false}
-                        helperText={isInputPasswordValid  == false ? "Campo Obrigatório" : ""}
+                        error={isInputPasswordValid === false}
+                        helperText={isInputPasswordValid  === false ? "Campo Obrigatório" : ""}
                         style={{width:"60%", marginLeft:"20%", marginBottom:25}}
                         InputProps={{
                             endAdornment: (
