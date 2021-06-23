@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageContent from '../../components/Image';
-import Worker from '../../images/worker.jpg';
+import Worker from '../../images/bicudo1.jpg';
 import * as S from './styled';
 import SimpleText from '../../components/TextDisplay/SimpleText';
 import { Divider } from '@material-ui/core';
@@ -28,13 +28,13 @@ function Home(){
                   </S.Text>
                 </S.GridItem>
                 {textObject.map((item, index) => (
-                  <S.GridItem item xs={4} key={index}>
+                  <S.GridItem item  xs={12}  md={4} key={index}>
                     <SimpleText text={item.text} image={item.image} />
                   </S.GridItem>
                 ))}
               </S.GridItem>
             </S.GridItem>
-            <S.GridItem item xs={6}>
+            <S.GridItem item xs={6} md={6}>
               <ImageContent image={Worker} />
             </S.GridItem>
           </S.GridContent>

@@ -21,7 +21,7 @@ function Detail({data}){
           </S.InfoWrapper>
           <Grid container spacing={2}>
             {data.map((item, index) => 
-                <Grid key={index} item xs={3}>
+                <Grid key={index} item xs={6} md={3}>
                   <InfoCard
                      image={item.image}
                      number={index}

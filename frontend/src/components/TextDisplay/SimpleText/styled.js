@@ -16,12 +16,12 @@ export const Text = styled.p`
     font-size: 15px;
     color: #2d2a32;
     font-weight: bold;
-    padding: 10px 5px 10px 10px;
+    padding: 10px 5px 0px 10px;
 `
 
 export const Image = styled.img`
-    height:  50px;
-    weight:  50px;
+    height:  70px;
+    weight:  0px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
