@@ -12,6 +12,7 @@ function Cadastro(){
 
     const [email, setEmail] = useState("");
     const [isEmailValid, setIsEmailValid] = useState(true);
+    const [invalidEmailMsg, setInvalidEmailMsg] = useState("Campo Obrigatório");
     const [password, setPassword] = useState('');
     const [isPasswordValid, setIsPasswordValid] = useState(true);
     const [confPassword, setConfPassword] = useState('');
@@ -22,6 +23,8 @@ function Cadastro(){
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [cpf, setCPF] = useState("");
+    const [isCPFValid, setIsCPFValid] = useState(true);
+    const [invalidCPFMsg, setInvalidCPFMsg] = useState("Campo Obrigatório");
     const [dataDeNascimento, setDataDeNascimento] = useState("");
     const [sexo, setSexo] = useState("");
 
@@ -35,12 +38,17 @@ function Cadastro(){
     const [cadastraServico, setCadastraServico] = useState(false);
     const [descricao, setDescricao] = useState("");
 
-    const [categorias, setCategorias] = useState(["teste1", "teste2", "teste3"]);
+    var [categorias, setCategorias] = useState([]);
     const [categoriaEscolhida, setCategoriaEscolhida] = useState("");
     const [categoriasEscolhidas, setCategoriasEscolhidas] = useState([]);
 
     const handleClickShowPassword = (event) => {
         setShowPassword(!showPassword);
+    }
+
+    async function getCategorias(){
+        const response = await api.get('/categorias/api');
+        setCategorias(response.data);
     }
 
     const handleClickShowConfPassword = (event) => {
@@ -105,7 +113,8 @@ function Cadastro(){
         setBairro(event.target.value);
     }
 
-    const handleCadastraServico = (event) => {
+    async function handleCadastraServico(event) {
+        await getCategorias();
         setCadastraServico(!cadastraServico);
     }
 
@@ -133,15 +142,45 @@ function Cadastro(){
         return value + ", ";
     };
 
-    const handleRegistrar = (value) => {
+    async function handleRegistrar() {
         if(validaCampos()){
-            //const response = await api.post('/registro', {email:values.email, senha:values.password});
-            history.push("/entrar");
+            const jsonToSend = {
+                primeiro_nome: nome,
+                segundo_nome: sobrenome,
+                cpf:cpf,
+                email: email,
+                senha: password,
+                genero: sexo,
+                data_nascimento: dataDeNascimento,
+                logradouro: logradouro,
+                numero: numero,
+                bairro: bairro,
+                cidade: cidade,
+                estado: UF,
+                cep: CEP
+            }
+            try {
+                const response = await api.post('/cadastro/api', jsonToSend);
+                if(response.data.hasOwnProperty('msg') && response.data.msg == "Cadastro Realizado Com Sucesso!"){
+                    history.push("/login");
+                } else if (response.data.hasOwnProperty('erro') && response.data.erro.includes("E-mail ja cadastrado")){
+                    setInvalidEmailMsg("Email Já Cadastrado");
+                    setIsEmailValid(false);
+                } else if (response.data.hasOwnProperty('erro') && response.data.erro.includes("CPF ja cadastrado")){
+                    setInvalidCPFMsg("CPF Já Cadastrado");
+                    setIsCPFValid(false);
+                }
+    
+            } catch (err) {
+                
+            }
+            
         }
     }
 
     const validaCampos = () => {
         if(email == null || email.length == 0){ //Valida se o campo Email está em branco
+            setInvalidEmailMsg("Campo Obrigatório");
             setIsEmailValid(false);
             return false;
         } else if(password == null || password.length == 0){ //Valida se o campo Senha está em branco
@@ -169,7 +208,7 @@ function Cadastro(){
                         variant="outlined"
                         onChange={handleEmailChange} 
                         error={isEmailValid == false}
-                        helperText={isEmailValid == false ? "Campo Obrigatório" : ""}
+                        helperText={isEmailValid == false ? invalidEmailMsg : ""}
                         style={{width:"60%", marginLeft:"20%", marginBottom:25}}
                     />
                     <br/>
@@ -244,6 +283,8 @@ function Cadastro(){
                         label="CPF"
                         variant="outlined"
                         onChange={handleCPFChange}
+                        error={isCPFValid == false}
+                        helperText={isCPFValid == false ? invalidCPFMsg : ""}
                         style={{width:"60%", marginLeft:"20%", marginBottom:25}}
                     />
                     <TextField 

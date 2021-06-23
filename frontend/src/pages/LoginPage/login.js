@@ -39,14 +39,15 @@ function Login(){
         history.push("/cadastro")
     };
 
-    const handleClickLogin = (event) => {
-        if(validaCampos()){
+    async function handleClickLogin() {
+        const valido = await validaCampos();
+        if(valido){
             history.push('/home');
         }
         setAreCredentialsValid(false);
     }
 
-    const validaCampos = () => {
+    async function validaCampos() {
         if(email == null || email.length == 0){ //Valida se o campo Email está em branco
             setIsInputEmailValid(false);
             return false;
@@ -57,9 +58,7 @@ function Login(){
 
         //Validar o par usuário/senha no banco
         try {
-            //const response = await api.post('/login', {email:values.email, senha:values.password});
-            const response = {data:{msg:"Login Válido!"}}
-            //const response = {data:{error:"Credenciais Inválidas!"}}
+            const response = await api.post('/login/api', {email:email, senha:password});
             if(response.data.hasOwnProperty('msg') && response.data.msg == "Login Válido!"){
                 return true;
             }       
