@@ -17,21 +17,21 @@ function Cadastro(){
     const [isPasswordValid, setIsPasswordValid] = useState(true);
     const [confPassword, setConfPassword] = useState('');
     const [isConfPasswordValid, setIsConfPasswordValid] = useState(true);
-    const [showPassword, setShowPassword] = useState(true);
-    const [showConfPassword, setShowConfPassword] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfPassword, setShowConfPassword] = useState(false);
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [cpf, setCPF] = useState("");
     const [isCPFValid, setIsCPFValid] = useState(true);
     const [invalidCPFMsg, setInvalidCPFMsg] = useState("Campo Obrigatório");
-    const [dataDeNascimento, setDataDeNascimento] = useState("");
-    const [sexo, setSexo] = useState("");
+    const [dataDeNascimento, setDataDeNascimento] = useState("2000-01-01");
+    const [sexo, setSexo] = useState("Masculino");
 
     const [logradouro, setLogradouro] = useState("");
     const [numero, setNumero] = useState("");
     const [cidade, setCidade] = useState("");
-    const [UF, setUF] = useState("");
+    const [UF, setUF] = useState("12");
     const [CEP, setCEP] = useState("");
     const [bairro, setBairro] = useState("");
 
@@ -150,7 +150,7 @@ function Cadastro(){
                 cpf:cpf,
                 email: email,
                 senha: password,
-                genero: sexo,
+                genero: sexo == "Masculino" ? 0 : 1,
                 data_nascimento: dataDeNascimento,
                 logradouro: logradouro,
                 numero: numero,
@@ -302,6 +302,7 @@ function Cadastro(){
                             id="genero" 
                             label="Sexo"
                             variant="outlined"
+                            defaultValue="male"
                             onChange={handleSexoChange}
                         >
                             <MenuItem value="male">Masculino</MenuItem>
@@ -342,25 +343,26 @@ function Cadastro(){
                             id="estado"
                             label="UF"
                             variant="outlined"
+                            defaultValue="12"
                             onChange={handleUFChange}
                             >
-                            <MenuItem value="AC">AC</MenuItem>
-                            <MenuItem value="AL">AL</MenuItem>
-                            <MenuItem value="AP">AP</MenuItem>
-                            <MenuItem value="AM">AM</MenuItem>
-                            <MenuItem value="BA">BA</MenuItem>
-                            <MenuItem value="CE">CE</MenuItem>
-                            <MenuItem value="ES">ES</MenuItem>
-                            <MenuItem value="GO">GO</MenuItem>
-                            <MenuItem value="MA">MA</MenuItem>
-                            <MenuItem value="MT">MT</MenuItem>
-                            <MenuItem value="MS">MS</MenuItem>
-                            <MenuItem value="MG">MG</MenuItem>
-                            <MenuItem value="PA">PA</MenuItem>
-                            <MenuItem value="PB">PB</MenuItem>
-                            <MenuItem value="PR">PR</MenuItem>
-                            <MenuItem value="PE">PE</MenuItem>
-                            <MenuItem value="PI">PI</MenuItem>
+                            <MenuItem value="1">AC</MenuItem>
+                            <MenuItem value="2">AL</MenuItem>
+                            <MenuItem value="3">AP</MenuItem>
+                            <MenuItem value="4">AM</MenuItem>
+                            <MenuItem value="5">BA</MenuItem>
+                            <MenuItem value="6">CE</MenuItem>
+                            <MenuItem value="7">ES</MenuItem>
+                            <MenuItem value="8">GO</MenuItem>
+                            <MenuItem value="9">MA</MenuItem>
+                            <MenuItem value="10">MT</MenuItem>
+                            <MenuItem value="11">MS</MenuItem>
+                            <MenuItem value="12">MG</MenuItem>
+                            <MenuItem value="13">PA</MenuItem>
+                            <MenuItem value="14">PB</MenuItem>
+                            <MenuItem value="15">PR</MenuItem>
+                            <MenuItem value="16">PE</MenuItem>
+                            <MenuItem value="17">PI</MenuItem>
                             <MenuItem value="RJ">RJ</MenuItem>
                             <MenuItem value="RN">RN</MenuItem>
                             <MenuItem value="RS">RS</MenuItem>
