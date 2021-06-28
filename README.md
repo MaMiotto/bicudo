@@ -41,3 +41,7 @@ Os serviços são organizados em categorias (hidráulico, elétrico, instalaçã
 ## 📋 Kanban Board
 
 No desenvolvimento deste projeto utilizamos um [Quadro Kanban](https://github.com/MaMiotto/bicudo/projects/1) para melhor organização do andamento das tarefas. 
+
+## 👷🏻 Arquitetura
+
+![Arquitetura](arquitetura.png)
