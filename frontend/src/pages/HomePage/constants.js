@@ -6,7 +6,7 @@
  
  export const textObject = [
   {
-    text: "Profissionais Capazes e Verificados",
+    text: "Profissionais Capazes de e Verificados ",
     image: bicudo,
   },
   {

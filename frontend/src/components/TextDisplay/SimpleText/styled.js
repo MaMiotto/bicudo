@@ -16,7 +16,7 @@ export const Text = styled.p`
     font-size: 15px;
     color: #2d2a32;
     font-weight: bold;
-    padding: 10px 5px 0px 10px;
+    padding: 10px 10px 0px 10px;
 `
 
 export const Image = styled.img`
