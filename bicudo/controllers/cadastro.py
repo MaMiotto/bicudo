@@ -126,6 +126,23 @@ def api():
         cep=cep,
         password=senha);
 
+        if(vars['fazServico']):
+            prestador = novo_usuario
+
+            tipos = ''
+            if 'tipos' in vars:
+                tipos = vars['tipos']
+
+            descricao = ''
+            if 'descricao' in vars:
+                descricao = vars['descricao']
+
+            novo_prestador = db.servico.insert(
+                prestador=prestador,
+                #tipos=tipos
+                descricao=descricao
+            )
+
         return  response.json({"msg":"Cadastro Realizado Com Sucesso!"});
         # return  response.json({"msg":segundo_nome});
         
