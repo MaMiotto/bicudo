@@ -36,9 +36,17 @@ def api():
         usuario_existe = db(db.auth_user.email==email).select().first()
 
         if(usuario_existe):
-            senha_correta = usuario_existe["password"] == senha
-            if(senha_correta):
+            #senha_correta = usuario_existe["password"] == senha
+            #if(senha_correta):
+                #return  response.json({"msg":"Login Válido!"})
+            
+            #TESTE
+            senha_crypt=db.auth_user.password.validate(senha)[0]
+            #TEM QUE TESTAR: NÂO SEI SE TEM QUE USAR senha_crypt no lugar de senha
+            valida = auth.login_bare(email, senha) #Valida e loga
+            if(valida):
                 return  response.json({"msg":"Login Válido!"})
+            
             else:
                 return response.json({"erro":"Credenciais Inválidas!"})
         return response.json({"erro":"Credenciais Inválidas!"})

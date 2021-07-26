@@ -34,8 +34,8 @@ class TestServico(unittest.TestCase):
         print(self.servico.pega_dados_servico())
         #self.assertEquals(texto,self.usuario.pega_dados())
         
-if __name__ == '__main__':
-    unittest.main()
+#if __name__ == '__main__':
+#    unittest.main()
 
 # Como rodar o teste: python3 -m unittest teste_servico.TestServico (nome_do_arquivo.nome_da_calsse_de_teste)
 

@@ -30,8 +30,13 @@ class TestEndereco(unittest.TestCase):
         string_teste = "Endereco:\n"+self.endereco.logradouro+" N."+self.endereco.numero+" - complemento: "+self.endereco.complemento+"\nBairro: "+self.endereco.bairro+" "+self.endereco.cidade+" "+self.endereco.estado+" - CEP "+self.endereco.cep
         self.assertEquals(self.endereco.pega_endereco(),string_teste)
         
-if __name__ == '__main__':
-    unittest.main()
+    def test_mostra_endereco_sem_complemento(self):
+        self.endereco.complemento=None
+        string_teste = "Endereco:\n"+self.endereco.logradouro+" N."+self.endereco.numero+"\nBairro: "+self.endereco.bairro+" "+self.endereco.cidade+" "+self.endereco.estado+" - CEP "+self.endereco.cep
+        self.assertEquals(self.endereco.pega_endereco(),string_teste)
+        
+#if __name__ == '__main__':
+#    unittest.main()
 
 # Como rodar o teste: python3 -m unittest teste_endereco.TestEndereco (nome_do_arquivo.nome_da_calsse_de_teste)
 

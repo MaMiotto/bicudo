@@ -1,4 +1,6 @@
 from endereco import Endereco
+from datetime import date
+from endereco import Endereco
 
 class Usuario:
     """endereco Objeto Endereco"""
@@ -60,7 +62,12 @@ class Usuario:
                 
     def pega_dados_pessoais(self):
         nome = self.pega_nome_completo()
-        dados_pessoais = "\nCPF: "+self.cpf+"\nData de nascimento: "+self.data_nascimento+"\nGenero: "+self.genero
+        #if self.data_nascimento is
+        if isinstance(self.data_nascimento, date):
+            data = self.data_nascimento.strftime("%d/%m/%Y")
+        else:
+            data = self.data_nascimento
+        dados_pessoais = "\nCPF: "+self.cpf+"\nData de nascimento: "+data+"\nGenero: "+self.genero
         return (nome+dados_pessoais)
     
     def pega_dados(self):

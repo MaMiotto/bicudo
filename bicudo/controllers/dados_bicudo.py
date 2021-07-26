@@ -1,7 +1,11 @@
 import auxi
-from classes.usuario import Usuario
-from classes.endereco import Endereco
-from classes.servico import Servico
+#from classes.usuario import Usuario
+#from classes.endereco import Endereco
+#from classes.servico import Servico
+from usuario import Usuario
+from endereco import Endereco
+from servico import Servico
+from solicitacao import Solicitacao
 from datetime import date
 
 #----------------------------------------------------------------

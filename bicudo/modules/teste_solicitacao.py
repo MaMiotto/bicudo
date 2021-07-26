@@ -11,7 +11,7 @@ class TestSolicitacao(unittest.TestCase):
         self.cliente = Usuario(10,"Joao","Pedro","000.000.000-01","01/01/2000","Masculino","(31)99999-9999","jp@x.com",self.endereco)
         self.prestador = Usuario(10,"Pedro","Paulo","000.000.000-02","01/01/2000","Masculino","(31)99999-8888","pp@x.com",self.endereco)
         self.tipo="pintura"
-        self.status="agendamendado"
+        self.status="Agendamento"
         self.disponibilidade="Visita qualquer dia de 14:00 a 18:00"
         self.agendamento="Segunda 16:00"
         #self.servico = Servico(self.prestador,self.tipo,self.descricao)
@@ -45,14 +45,14 @@ class TestSolicitacao(unittest.TestCase):
         self.assertEquals(cliente,self.solicitacao.cliente)
         self.assertEquals(prestador,self.solicitacao.prestador)
         self.assertEquals("pintura",self.solicitacao.tipo)
-        self.assertEquals("agendamendado",self.solicitacao.status)
+        self.assertEquals("Agendamento",self.solicitacao.status)
         self.assertEquals("Visita qualquer dia de 14:00 a 18:00",self.solicitacao.disponibilidade)
         self.assertEquals("Segunda 16:00",self.solicitacao.agendamento)
         
     def teste_pega_dados_solicitacao(self):
         txt_dados = self.solicitacao.pega_dados_solicitacao()
         print(txt_dados)
-        txt_assert = "Ciente: Joao Pedro\nCPF: 000.000.000-01\nData de nascimento: 01/01/2000\nGenero: Masculinoe-mail: jp@x.com - telefone: (31)99999-9999\nPrestador: Pedro Paulo\nCPF: 000.000.000-02\nData de nascimento: 01/01/2000\nGenero: Masculinoe-mail: pp@x.com - telefone: (31)99999-8888\nTipo: pintura\nStatus: agendamendado\nDisponibilidade: Visita qualquer dia de 14:00 a 18:00\nAgendamento: Segunda 16:00"
+        txt_assert = "Ciente: Joao Pedro\nCPF: 000.000.000-01\nData de nascimento: 01/01/2000\nGenero: Masculinoe-mail: jp@x.com - telefone: (31)99999-9999\nPrestador: Pedro Paulo\nCPF: 000.000.000-02\nData de nascimento: 01/01/2000\nGenero: Masculinoe-mail: pp@x.com - telefone: (31)99999-8888\nTipo: pintura\nStatus: Agendamento\nDisponibilidade: Visita qualquer dia de 14:00 a 18:00\nAgendamento: Segunda 16:00"
         self.assertEquals(txt_assert,txt_dados)
         
 #if __name__ == '__main__':

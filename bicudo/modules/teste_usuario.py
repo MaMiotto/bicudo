@@ -1,4 +1,5 @@
 import unittest
+from datetime import date
 from endereco import Endereco
 from usuario import Usuario
 
@@ -39,8 +40,13 @@ class TestUsuario(unittest.TestCase):
         texto = "Joao Pedro\nCPF: 000.000.000-01\nData de nascimento: 01/01/2000\nGenero: Masculinoe-mail: jp@x.com - telefone: (31)99999-9999"
         self.assertEquals(texto,self.usuario.pega_dados())
         
-if __name__ == '__main__':
-    unittest.main()
+    def test_pega_dados_datetime(self):
+        self.usuario.data_nascimento=date(2000,1,1)
+        texto = "Joao Pedro\nCPF: 000.000.000-01\nData de nascimento: 01/01/2000\nGenero: Masculinoe-mail: jp@x.com - telefone: (31)99999-9999"
+        self.assertEquals(texto,self.usuario.pega_dados())
+        
+#if __name__ == '__main__':
+#    unittest.main()
 
 # Como rodar o teste: python3 -m unittest teste_usuario.TestUsuario (nome_do_arquivo.nome_da_calsse_de_teste)
 

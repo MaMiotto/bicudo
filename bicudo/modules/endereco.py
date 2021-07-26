@@ -47,4 +47,4 @@ class Endereco:
         if self.complemento:
             return("Endereco:\n%s N.%s - complemento: %s\nBairro: %s %s %s - CEP %s"%(self.logradouro, self.numero, self.complemento, self.bairro, self.cidade, self.estado, self.cep)) 
         else:
-            return("Endereco:\n%s N.%s - complemento: %s\nBairro: %s %s %s - CEP %s"%(self.logradouro, self.numero, self.bairro, self.cidade, self.estado, self.cep)) 
+            return("Endereco:\n%s N.%s\nBairro: %s %s %s - CEP %s"%(self.logradouro, self.numero, self.bairro, self.cidade, self.estado, self.cep)) 

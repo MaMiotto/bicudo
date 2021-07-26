@@ -2,9 +2,17 @@ from gluon import current
 #from gluon.dal import DAL, Field
 
 
-from classes.usuario import Usuario
-from classes.endereco import Endereco
-from classes.servico import Servico
+#from classes.usuario import Usuario
+#from classes.endereco import Endereco
+#from classes.servico import Servico
+#from classes.solicitacao import Solicitacao
+
+from usuario import Usuario
+from endereco import Endereco
+from servico import Servico
+from solicitacao import Solicitacao
+
+
 
 STATUS = {
     1:"Solicitacao",
@@ -75,8 +83,10 @@ def dados_servico(usuario=None):
     if not (usuario):
         usuario_id=current.auth.user.id
         usuario = dados_usuario(usuario_id)
+    else:
+        usuario_id=usuario.id_usuario
     serv=""
-    servico_db = db(db.servico.prestador == id_usuario).select().first()
+    servico_db = db(db.servico.prestador == usuario_id).select().first()
     SERV={}
     if (servico_db):
         for ts in db().select(db.tipo_servico.ALL, orderby=db.tipo_servico.id):
@@ -95,8 +105,50 @@ def dados_todos_servicos():
     for servico in servicos:
         id_usuario = servico.prestador
         usuario=dados_usuario(id_usuario)
-        servico=dados_servico(usuario)
-        todo_servico·append(servico)
+        servico_detalhe=dados_servico(usuario)
+        todo_servico.append(servico_detalhe)
+        
+def objetos_solicitacao(solicitacao):
+    cliente = dados_usuario(solicitacao['cliente'])
+    prestador = dados_usuario(solicitacao['prestador'])
+    #return Solicitacao(solicitacao.cliente,solicitacao.prestador,solicitacao.tipo,solicitacao.status,solicitacao.disponibilidade,solicitacao.agendamento)
+    return Solicitacao(cliente,prestador,solicitacao['tipo'],solicitacao['status'],solicitacao['disponibilidade'],solicitacao['agendamento'])
+        
+def objetos_solicitacao_lista(usuario_id,usuario):
+    db = current.db
+    if usuario == "cliente":
+        solicitacoes=db(db.solicitacao.cliente==usuario_id).select()
+    elif usuario == "prestador":
+        solicitacoes=db(db.solicitacao.prestador==usuario_id).select()
+    toda_solicitacao=[]
+    for solicitacao in solicitacoes:
+        solicitacao_object=objetos_solicitacao(solicitacao)
+        toda_solicitacao.append(solicitacao_object)
+    return toda_solicitacao
+        
+def dados_solicitacao_cliente(usuario_id):
+    objetos_solicitacao_cliente=objetos_solicitacao_lista(usuario_id,"cliente")
+    dados_solicitacoes=[]
+    for solicitacao in objetos_solicitacao_cliente:
+        dados_solicitacoes.append(solicitacao.pega_dados_solicitacao())
+    return dados_solicitacoes
+
+def dados_solicitacao_prestador(usuario_id):
+    objetos_solicitacao_prestador=objetos_solicitacao_lista(usuario_id,"prestador")
+    dados_solicitacoes=[]
+    for solicitacao in objetos_solicitacao_prestador:
+        dados_solicitacoes.append(solicitacao.pega_dados_solicitacao())
+    return dados_solicitacoes
+
+def edita_solicitacao(servico_id,campo,valor):
+    db = current.db
+    if campo == "status":
+        db(db.solicitacao.id==solicitacao_id).update(status=valor)
+    elif campo == "disponibilidade":
+        db(db.solicitacao.id==solicitacao_id).update(disponibilidade=valor)
+    elif campo == "agendamento":
+        db(db.solicitacao.id==solicitacao_id).update(agendamento=valor)
+    
 
 '''def dados_usuario(usuario_db):
     endereco=Endereco(usuario_db['logradouro'],usuario_db['numero'], usuario_db['complemento'], usuario_db['bairro'], usuario_db['cidade'], ESTADO[usuario_db['estado']], usuario_db['cep'])

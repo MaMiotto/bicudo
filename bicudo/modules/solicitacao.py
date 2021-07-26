@@ -1,6 +1,15 @@
-from classes.usuario import Usuario
-from classes.endereco import Endereco
-from classes.servico import Servico
+from usuario import Usuario
+from endereco import Endereco
+from servico import Servico
+
+STATUS = {
+    1:"Solicitacao",
+    2:"Agendamento",
+    3:"Confirmado",
+    4:"Finalizado",
+    5:"Recusado"
+}
+
 
 class Solicitacao:
     def __init__(self, cliente, prestador, tipo, status, disponibilidade, agendamento): 
@@ -35,5 +44,5 @@ class Solicitacao:
     def pega_dados_solicitacao(self):
         dados_cliente = self.cliente.pega_dados()
         dados_prestador = self.prestador.pega_dados()
-        txt_info="Ciente: "+dados_cliente+"\nPrestador: "+dados_prestador+"\nTipo: "+self.tipo+"\nStatus: "+self.status+"\nDisponibilidade: "+self.disponibilidade+"\nAgendamento: "+self.agendamento
+        txt_info="Ciente: "+dados_cliente+"\nPrestador: "+dados_prestador+"\nTipo: "+str(self.tipo)+"\nStatus: "+str(self.status)+"\nDisponibilidade: "+self.disponibilidade+"\nAgendamento: "+self.agendamento
         return(txt_info)
