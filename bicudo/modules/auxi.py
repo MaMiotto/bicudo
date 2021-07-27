@@ -148,6 +148,44 @@ def edita_solicitacao(servico_id,campo,valor):
         db(db.solicitacao.id==solicitacao_id).update(disponibilidade=valor)
     elif campo == "agendamento":
         db(db.solicitacao.id==solicitacao_id).update(agendamento=valor)
+        
+def seleciona_tipo_sevico(id_servico):
+    db = current.db
+    servicos=db(db.servico.tipos.contains(int(id_servico))).select()
+    todo_servico_busca=[]
+    
+    SERV={}
+    for ts in db().select(db.tipo_servico.ALL, orderby=db.tipo_servico.id):
+        SERV[ts.id]=ts.nome
+        
+    for servico in servicos:
+        usuario_obj = dados_usuario(int(servico['prestador']))
+        serv=""
+        
+        for s in servico['tipos']:
+            serv+=SERV[s]+", "
+            
+        servico_obj=Servico(usuario_obj, serv, servico['descricao'])
+    
+        todo_servico_busca.append(servico_obj)
+        
+    return (todo_servico_busca)
+
+    #NO CONTROLLER:
+    
+    #Função que recebe o id do tipo e retorna array de array (par[usuario,servico])
+    #def busca_servico(id_tipo):
+        #busca=auxi.seleciona_tipo_sevico(id_tipo)
+        #return(busca)
+
+    #Obs.: O controler não retorna função que recebe parametro
+    #Função que chama a busca e recebe objtos usuario e servico
+    #def teste():
+    #busca=busca_servico(3)
+    #for item in busca:
+        #usuario=item.prestador
+        #print(usuario.pega_item_usuario()) #objeto usuario
+        #print(item.pega_item_servico()) #objeto servico
     
 
 '''def dados_usuario(usuario_db):
