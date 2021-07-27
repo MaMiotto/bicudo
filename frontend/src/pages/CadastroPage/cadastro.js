@@ -157,7 +157,10 @@ function Cadastro(){
                 bairro: bairro,
                 cidade: cidade,
                 estado: UF,
-                cep: CEP
+                cep: CEP,
+                fazServico: cadastraServico,
+                tipos: categoriasEscolhidas,
+                descricao: descricao
             }
             try {
                 const response = await api.post('/cadastro/api', jsonToSend);

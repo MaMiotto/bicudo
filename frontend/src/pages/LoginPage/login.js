@@ -2,12 +2,9 @@ import React, {useState} from 'react';
 import * as S from './styled';
 import { useHistory } from "react-router-dom";
 import api from '../../services/api';
-import * as Yup from 'yup';
 
 import { TextField, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
-
-
 
 function Login(){
 
@@ -50,15 +47,6 @@ function Login(){
 
     async function validaCampos() {
         const data = {email, password}
-
-        const schema = Yup.object().shape({
-            email: Yup.string().email().required("Esse campo e' obrigadorio"),
-            password: Yup.string().required("Esse campo e' obrigatorio"),
-        });
-
-        const res = await schema.validate(data, {
-            abortEarly:false,
-        });
         
         if(email === null || email.length === 0){ //Valida se o campo Email está em branco
             setIsInputEmailValid(false);
