@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+
+<h3> TESTE INTEGRAÇÃO </h3>
+NÚMERO TOTAL DE TESTES: {{=total_testes}}
+<br>
+NÚMERO TOTAL DE FALHAS: {{=total_falhas}}
+<br>
+<br>
+<h2>RELATÓRIO</h2>
+{{for row in relatorio_txt:}}
+    {{=row}}
+    <br>
+{{pass}}
+

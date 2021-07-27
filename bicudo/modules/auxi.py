@@ -148,6 +148,7 @@ def edita_solicitacao(servico_id,campo,valor):
         db(db.solicitacao.id==solicitacao_id).update(disponibilidade=valor)
     elif campo == "agendamento":
         db(db.solicitacao.id==solicitacao_id).update(agendamento=valor)
+
         
 def seleciona_tipo_sevico(id_servico):
     db = current.db
