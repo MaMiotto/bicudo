@@ -5,6 +5,10 @@ import Home from '../pages/HomePage'
 import Login from '../pages/LoginPage/login'
 import Cadastro from '../pages/CadastroPage/cadastro'
 import Profile from '../pages/Profile';
+<<<<<<< HEAD
+=======
+//import ChangePassword from '../pages/Password';
+>>>>>>> 2e4c178c5a70c27ff9c061f561d6ead33454a087
 import Pesquisa from '../pages/Pesquisa/pesquisa'
 import Contato from '../pages/Contato/contato'
 
