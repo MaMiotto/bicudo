@@ -42,7 +42,7 @@ def dados_servicos():
     return dict(todo_serviso=todo_servico)
 
 def usuario():
-    usuraio = dados_usuario()
+    usuario = dados_usuario()
     txt_usuario = usuario.pega_dados()
     return dict(usuario=usuario,txt_usuario=txt_usuario)
 
