@@ -1,12 +1,12 @@
 import api from "../../services/api";
 
 export const requestUserInfo = async (email) =>{
-    const res = await api.get(`profile/${email}/api`);
+    const res = await api.get(`/get_usuario2/por_email?email=${email}`);
     return res; 
 }
 
 export const updateUserInfo = async (data) =>{
-    const res = api.put(`/profile/${data.email}/api`, {params: data});
+    const res = api.post(`/usuario/api_edita`, data);
     return res;
 }
 

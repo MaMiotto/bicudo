@@ -5,29 +5,27 @@ import { toast } from 'react-toastify';
 import { Button, Grid, makeStyles, TextField, FormControl, Select, MenuItem, InputLabel} from '@material-ui/core';
 import { requestUserInfo, updateUserInfo } from './service';
 import Loading from '../../components/Loading';
-import {isLogin} from '../../services/authentication'
+import {updateObject} from '../../utils/createUpdateObject';
+import {whosLoged} from '../../services/authentication'
 
 function Profile(){
     const classes = useStyles()
     const [userInfo, setUserInfo] = useState(true);
-    const email = '';
+    const [loading, setLoading] = useState(true)
+    const email = whosLoged()
     const history = useHistory();
 
     const fetchData = async () =>{
         const res = await requestUserInfo(email);
-        setUserInfo(res.data)
+        setUserInfo(res.data.dados[0])
+        setLoading(false)
     }
 
-    useEffect(() => {
-        if(!isLogin()){
-            history.push("/login");
-        }
-        
-    }, [userInfo]);
+    userInfo && console.log(userInfo)
 
     useEffect(()=>{
         fetchData()
-    }, [userInfo])
+    }, [])
 
     const [user, setUser] = useState({
       nome: "",
@@ -49,7 +47,8 @@ function Profile(){
     };
 
     const handleSubmit = async () =>{
-        const res = await updateUserInfo(user);
+        const updateUser = updateObject(user);
+        const res = await updateUserInfo(updateUser);
         if(res){
             toast.success('Dados salvos com sucesso');
         }
@@ -60,7 +59,7 @@ function Profile(){
 
 return (
   <>
-    {userInfo ? (
+    {!loading ? userInfo && (
       <S.Container>
         <div>
           <S.Header>
@@ -79,7 +78,7 @@ return (
                       label="Nome"
                       variant="outlined"
                       name="nome"
-                      defaultValue={userInfo.nome}
+                      defaultValue={`${userInfo.first_name} ${userInfo.last_name}`}
                       className={classes.text}
                       onChange={handleChange}
                     />
@@ -99,17 +98,13 @@ return (
                       type="date"
                       id="dob"
                       type="date"
-                      defaultValue={user.dob}
+                      defaultValue={userInfo.data_nascimento}
                       label="Data de Nascimento"
                       variant="outlined"
                       name="dob"
                       className={classes.text}
                       onChange={handleChange}
                     />
-                    <FormControl
-                      variant="outlined"
-                      className={classes.formControl}
-                    >
                       <InputLabel id="demo-simple-select-outlined-label">
                         Sexo
                       </InputLabel>
@@ -125,7 +120,6 @@ return (
                         <MenuItem value="male">Masculino</MenuItem>
                         <MenuItem value="female">Feminino</MenuItem>
                       </Select>
-                    </FormControl>
                     <TextField
                       required
                       id="cpf"
@@ -144,7 +138,7 @@ return (
                       label="Logradouro"
                       variant="outlined"
                       name="log"
-                      defaultValue={userInfo.logodouro}
+                      defaultValue={userInfo.logradouro}
                       className={classes.text}
                       onChange={handleChange}
                     />

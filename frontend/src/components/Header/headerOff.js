@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {AppBar, Toolbar, Typography, Button} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import * as S from './styled';
+import { whosLoged, isLogin } from '../../services/authentication';
 
 function HeaderOff(){
-    const [isLogged, setIsLogged] = useState(true)
 
     const history = useHistory();
 
@@ -34,13 +34,10 @@ function HeaderOff(){
             <Button color="inherit" onClick={handleClickInicio}>
               Início
             </Button>
-            <Button color="inherit" onClick={handleClickEntrar}>
-              Entrar
-            </Button>
-            {isLogged ? (
+            {isLogin() ? (
               <S.Container>
                 <Button color="inherit" onClick={handleClickPerfil}>Perfil</Button>
-                <Button color="inherit" onClick={handleClickPassword}>Altera Senha</Button>
+                {/* <Button color="inherit" onClick={handleClickPassword}>Altera Senha</Button> */}
               </S.Container>
             ) : (
               <Button color="inherit" onClick={handleClickEntrar}>
