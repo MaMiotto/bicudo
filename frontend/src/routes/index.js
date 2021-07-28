@@ -7,6 +7,7 @@ import Cadastro from '../pages/CadastroPage/cadastro'
 import Profile from '../pages/Profile';
 import Password from '../pages/Password';
 import Pesquisa from '../pages/Pesquisa/pesquisa'
+import Contato from '../pages/Contato/contato'
 
 function Routes(){
     return (
@@ -17,6 +18,7 @@ function Routes(){
         <Route path='/perfil' component={Profile} exact/>
         <Route path='/change-password' component={Password} exact/>
         <Route path='/pesquisa' component={Pesquisa} exact/>
+        <Route path='/solicitar-servico' component={Contato} exact/>
     </Switch>
     )
 }

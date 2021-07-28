@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import * as S from './styled';
 import { useHistory } from "react-router-dom";
 import api from '../../services/api';
+import {login} from '../../services/authentication'
 
 import { TextField, InputAdornment, IconButton, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
@@ -40,6 +41,7 @@ function Login(){
     async function handleClickLogin() {
         const valido = await validaCampos();
         if(valido){
+            login(email);
             history.push('/home');
         }
         setAreCredentialsValid(false);
@@ -47,7 +49,6 @@ function Login(){
 
     async function validaCampos() {
         const data = {email, password}
-        
         if(email === null || email.length === 0){ //Valida se o campo Email está em branco
             setIsInputEmailValid(false);
             return false;

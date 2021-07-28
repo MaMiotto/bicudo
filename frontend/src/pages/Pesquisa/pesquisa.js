@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import api from '../../services/api';
 import * as S from './styled';
+import {isLogin} from '../../services/authentication'
 
 import { Button, Card, CardContent, Divider, IconButton, InputAdornment, TextField, Typography } from '@material-ui/core';
 import { Search} from '@material-ui/icons';
@@ -44,7 +45,9 @@ function Pesquisa(){
             const response = await api.get('/categorias/api');
             setCategorias(response.data);
         }
-
+        if(!isLogin()){
+            history.push("/login");
+        }
         getCategorias()
         
         //setCategorias(['Encanador', 'Eletricista', 'Pintor']);

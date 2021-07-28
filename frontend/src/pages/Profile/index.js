@@ -1,19 +1,31 @@
 import React,{useEffect, useState} from 'react';
 import * as S from './styled';
+import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { Button, Grid, makeStyles, TextField, FormControl, Select, MenuItem, InputLabel} from '@material-ui/core';
 import { requestUserInfo, updateUserInfo } from './service';
 import Loading from '../../components/Loading';
+import {isLogin} from '../../services/authentication'
 
 function Profile(){
     const classes = useStyles()
     const [userInfo, setUserInfo] = useState(true);
     const id = 0;
 
+    const history = useHistory();
+
     const fetchData = async () =>{
         const res = await requestUserInfo(id);
         setUserInfo(res.data)
     }
+
+    useEffect(() => {
+
+        if(!isLogin()){
+            history.push("/login");
+        }
+        
+    }, []);
 
     useEffect(()=>{
         fetchData()
