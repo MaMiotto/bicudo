@@ -29,7 +29,7 @@ def cors_allow(action):
 @auth.requires_login()
 def api_edita():
 
-    def POST(*args, **vars):
+    def PUT(*args, **vars):
 
         id_usuario = session.auth.user.id
         erro = ""
