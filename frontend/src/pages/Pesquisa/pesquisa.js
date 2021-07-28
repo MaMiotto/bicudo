@@ -12,7 +12,7 @@ function Pesquisa(){
 
     const history = useHistory();
 
-    const [categorias, setCategorias] = useState([{"nome":""}]);
+    const [categorias, setCategorias] = useState([]);
     const [categoriaPesquisada, setCategoriaPesquisada] = useState('');
     const [pesquisou, setPesquisou] = useState(false);
     const [profissionais, setProfissionais] = useState([
@@ -43,6 +43,7 @@ function Pesquisa(){
 
         async function getCategorias(){
             const response = await api.get('/categorias/api');
+            console.log(response.data)
             setCategorias(response.data);
         }
         if(!isLogin()){
@@ -123,7 +124,7 @@ function Pesquisa(){
                     id="free-solo-2-demo"
                     disableClearable
                     onChange={handleTextChange}
-                    options={categorias.map((option) => option.nome)}
+                    options={categorias.map((option) => option)}
                     renderInput={(params) => (
                     <TextField
                         {...params}
