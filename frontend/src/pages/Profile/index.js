@@ -10,22 +10,20 @@ import {isLogin} from '../../services/authentication'
 function Profile(){
     const classes = useStyles()
     const [userInfo, setUserInfo] = useState(true);
-    const id = 0;
-
+    const email = '';
     const history = useHistory();
 
     const fetchData = async () =>{
-        const res = await requestUserInfo(id);
+        const res = await requestUserInfo(email);
         setUserInfo(res.data)
     }
 
     useEffect(() => {
-
         if(!isLogin()){
             history.push("/login");
         }
         
-    }, []);
+    }, [userInfo]);
 
     useEffect(()=>{
         fetchData()
@@ -51,7 +49,6 @@ function Profile(){
     };
 
     const handleSubmit = async () =>{
-        user.id = id;
         const res = await updateUserInfo(user);
         if(res){
             toast.success('Dados salvos com sucesso');

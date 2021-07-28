@@ -23,3 +23,7 @@ export const Header = styled.div`
   width: 50%;
   padding: 10px;
 `;
+
+export const Footer = styled.div`
+  margin-top: 10px;
+`

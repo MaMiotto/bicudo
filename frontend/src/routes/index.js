@@ -5,7 +5,7 @@ import Home from '../pages/HomePage'
 import Login from '../pages/LoginPage/login'
 import Cadastro from '../pages/CadastroPage/cadastro'
 import Profile from '../pages/Profile';
-import Password from '../pages/Password';
+import ChangePassword from '../pages/Password';
 import Pesquisa from '../pages/Pesquisa/pesquisa'
 import Contato from '../pages/Contato/contato'
 
@@ -16,7 +16,7 @@ function Routes(){
         <Route path='/login' component={Login} exact/>
         <Route path='/cadastro' component={Cadastro} exact/>
         <Route path='/perfil' component={Profile} exact/>
-        <Route path='/change-password' component={Password} exact/>
+        {/* <Route path='/change-password' component={ChangePassword} exact/> */}
         <Route path='/pesquisa' component={Pesquisa} exact/>
         <Route path='/solicitar-servico' component={Contato} exact/>
     </Switch>
