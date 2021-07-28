@@ -42,7 +42,7 @@ function Login(){
         const valido = await validaCampos();
         if(valido){
             login(email);
-            history.push('/home');
+            history.push('/pesquisa');
         }
         setAreCredentialsValid(false);
     }
