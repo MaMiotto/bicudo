@@ -17,11 +17,11 @@ function Contato(){
         
     }, []);
 
-    const [contratado, setContratado] = useState("Luiz");
+    const [contratado, setContratado] = useState("Rodrigo");
     const [tipoContato, setTipoContato] = useState("telefone");
     const [email, setEmail] = useState("maria@gmail.com");
     const [telefone, setTelefone] = useState("(31) 9 8888-5555");
-    const [contratante, setContratante] = useState("Maria");
+    const [contratante, setContratante] = useState("Marcos");
     const [categoria, setCategoria] = useState("Eletricista");
     const [dataServico, setDataServico] = useState("2000-01-01");
 
@@ -38,7 +38,7 @@ function Contato(){
     }
 
     function handleSubmit(event) {
-
+        history.push("/pesquisa");
     }
 
     return(

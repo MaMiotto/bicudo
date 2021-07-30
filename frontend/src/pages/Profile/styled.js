@@ -13,7 +13,7 @@ export const Title = styled.h2`
 
 export const Main = styled.div`
   margin: auto;
-  width: 50%;
+  width: 55%;
   border: 1px solid grey;
   padding: 10px;
 `;
