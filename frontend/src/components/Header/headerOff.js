@@ -2,11 +2,7 @@ import React, {useState} from 'react';
 import {AppBar, Toolbar, Typography, Button} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import * as S from './styled';
-<<<<<<< HEAD
-import { whosLoged, isLogin } from '../../services/authentication';
-=======
 import {isLogin, logout} from '../../services/authentication'
->>>>>>> 510488ea039924ac1fecd8bb8ec5b31a3e8fa551
 
 function HeaderOff(){
 

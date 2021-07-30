@@ -6,7 +6,6 @@ export const requestUserInfo = async (email) =>{
 }
 
 export const updateUserInfo = async (data) =>{
-    const res = api.post(`/usuario/api_edita`, data);
+    const res = api.put(`/usuario/api_edita`, data);
     return res;
 }
-
