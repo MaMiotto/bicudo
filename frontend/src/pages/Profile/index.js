@@ -6,27 +6,13 @@ import { Button, Grid, makeStyles, TextField, FormControl, Select, MenuItem, Inp
 import { requestUserInfo, updateUserInfo } from './service';
 import Loading from '../../components/Loading';
 import {updateObject} from '../../utils/createUpdateObject';
+import { getGenderType } from '../../utils/genderName';
 import {whosLoged} from '../../services/authentication'
 
 function Profile(){
     const classes = useStyles()
     const [userInfo, setUserInfo] = useState(true);
     const [loading, setLoading] = useState(true)
-    const email = whosLoged()
-    const history = useHistory();
-
-    const fetchData = async () =>{
-        const res = await requestUserInfo(email);
-        setUserInfo(res.data.dados[0])
-        setLoading(false)
-    }
-
-    userInfo && console.log(userInfo)
-
-    useEffect(()=>{
-        fetchData()
-    }, [])
-
     const [user, setUser] = useState({
       nome: "",
       email: "",
@@ -37,8 +23,37 @@ function Profile(){
       num: "",
       cidade: "",
       cep: "",
-      bairro:""
+      bairro: "",
+      id: 0,
     });
+    const email = whosLoged()
+    const history = useHistory();
+
+    const fetchData = async () =>{
+        const res = await requestUserInfo(email);
+        const data = res.data.dados[0];
+        setUserInfo(data)
+        setUser({
+          nome:`${data.first_name} ${data.last_name}`,
+          email: data.email,
+          dob:data.data_nascimento,
+          sex: data.genero,
+          cpf: data.cpf,
+          log: data.logradouro,
+          num: data.numero,
+          cidade: data.cidade,
+          cep: data.cep,
+          bairro: data.bairro,
+          id: data.id
+        })
+        setLoading(false)
+    }
+
+    userInfo && console.log(userInfo)
+
+    useEffect(()=>{
+        fetchData()
+    }, [])
 
     const handleChange = (e) => {
       const name = e.target.name;
@@ -48,6 +63,7 @@ function Profile(){
 
     const handleSubmit = async () =>{
         const updateUser = updateObject(user);
+        updateUser.id_do_usuario = userInfo.id
         const res = await updateUserInfo(updateUser);
         if(res){
             toast.success('Dados salvos com sucesso');
@@ -79,6 +95,7 @@ return (
                       variant="outlined"
                       name="nome"
                       defaultValue={`${userInfo.first_name} ${userInfo.last_name}`}
+                      value={`${userInfo.first_name} ${userInfo.last_name}`}
                       className={classes.text}
                       onChange={handleChange}
                     />
@@ -90,6 +107,7 @@ return (
                       variant="outlined"
                       name="email"
                       defaultValue={userInfo.email}
+                      value={userInfo.email}
                       className={classes.text}
                       onChange={handleChange}
                     />
@@ -99,25 +117,25 @@ return (
                       id="dob"
                       type="date"
                       defaultValue={userInfo.data_nascimento}
+                      value={userInfo.data_nascimento}
                       label="Data de Nascimento"
                       variant="outlined"
                       name="dob"
                       className={classes.text}
                       onChange={handleChange}
                     />
-                      <InputLabel id="demo-simple-select-outlined-label">
-                        Sexo
-                      </InputLabel>
+                      <InputLabel label="Genero"></InputLabel>
                       <Select
                         id="genero"
                         label="Sexo"
                         variant="outlined"
                         name="sex"
-                        defaultValue={userInfo.genero}
+                        defaultValue={getGenderType(userInfo.genero)}
+                        value={getGenderType(userInfo.genero)}
                         onChange={handleChange}
                         className={classes.text}
                       >
-                        <MenuItem value="male">Masculino</MenuItem>
+                        <MenuItem value={0}>Masculino</MenuItem>
                         <MenuItem value="female">Feminino</MenuItem>
                       </Select>
                     <TextField
@@ -128,6 +146,7 @@ return (
                       variant="outlined"
                       name="cpf"
                       defaultValue={userInfo.cpf}
+                      value={userInfo.cpf}
                       className={classes.text}
                     />
                   </Grid>
@@ -139,6 +158,7 @@ return (
                       variant="outlined"
                       name="log"
                       defaultValue={userInfo.logradouro}
+                      value={userInfo.logradouro}
                       className={classes.text}
                       onChange={handleChange}
                     />
@@ -149,6 +169,7 @@ return (
                       variant="outlined"
                       name="num"
                       defaultValue={userInfo.numero}
+                      value={userInfo.numero}
                       className={classes.text}
                       onChange={handleChange}
                     />
@@ -159,6 +180,7 @@ return (
                       variant="outlined"
                       name="cidade"
                       defaultValue={userInfo.cidade}
+                      value={userInfo.cidade}
                       className={classes.text}
                       onChange={handleChange}
                     />
@@ -169,6 +191,7 @@ return (
                       variant="outlined"
                       name="cep"
                       defaultValue={userInfo.cep}
+                      value={userInfo.cep}
                       className={classes.text}
                       onChange={handleChange}
                     />
@@ -179,6 +202,7 @@ return (
                       variant="outlined"
                       name="bairro"
                       defaultValue={userInfo.bairro}
+                      value={userInfo.bairro}
                       className={classes.text}
                       onChange={handleChange}
                     />

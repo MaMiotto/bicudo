@@ -12,7 +12,8 @@ test('return validated data', ()=>{
         num: 4,
         cidade: 'belo horizonte',
         cep: 219324,
-        telefone:'123456'
+        telefone:'123456',
+        id: 4,
     }
 
     const acceptedDAta = {
@@ -28,6 +29,7 @@ test('return validated data', ()=>{
         cep: 219324,
         email: 'james@gmail.com',
         telefone:'123456',
+        id:4,
     }
 
     expect(JSON.stringify(updateObject(data))).toEqual(JSON.stringify(acceptedDAta))

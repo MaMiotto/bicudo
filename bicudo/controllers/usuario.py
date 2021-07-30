@@ -1,3 +1,13 @@
+import auxi
+#from classes.usuario import Usuario
+#from classes.endereco import Endereco
+#from classes.servico import Servico
+from usuario import Usuario
+from endereco import Endereco
+from servico import Servico
+from solicitacao import Solicitacao
+from datetime import date
+
 def cors_origin():
     origin = request.env.http_origin
     headers = {}
@@ -26,12 +36,12 @@ def cors_allow(action):
 
 @cors_allow
 @request.restful()
-@auth.requires_login()
 def api_edita():
 
-    def POST(*args, **vars):
+    def PUT(*args, **vars):
 
-        id_usuario = session.auth.user.id
+        # id_usuario = session.auth.user.id
+        id_usuario = 3
         erro = ""
 
         # Dados pessoais
@@ -84,7 +94,7 @@ def api_edita():
         if 'cidade' in vars:
             cidade = vars['cidade']
 
-        estado = ''
+        # estado = ''
         # if 'estado' in vars:
         #     estado = int(vars['estado'])
 
@@ -93,7 +103,7 @@ def api_edita():
             cep = vars['cep']
 
         
-        db.auth_user.update(db.auth_user.id == id_usuario,
+        db (db.auth_user.id == id_usuario).update(
             first_name=primeiro_nome,
             last_name=segundo_nome,
             cpf=cpf,
@@ -105,12 +115,9 @@ def api_edita():
             complemento=complemento,
             bairro=bairro,
             cidade=cidade,
-            estado=estado,
-            cep=cep,
-            password=senha)
+            cep=cep)
             
         return  response.json({"msg":"Cadastro Atualizado Com Sucesso!"});
-        # return  response.json({"msg":segundo_nome});
         
     return locals()
 
