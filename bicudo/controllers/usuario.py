@@ -15,7 +15,7 @@ def cors_origin():
 
     headers['Access-Control-Allow-Methods'] = '*'
     headers['Access-Control-Allow-Headers'] = '*'
-    headers['Access-Control-Allow-Credentials'] = 'true';
+    headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers.update(headers)
 
     if request.env.request_method == 'OPTIONS':
@@ -117,7 +117,7 @@ def api_edita():
             cidade=cidade,
             cep=cep)
             
-        return  response.json({"msg":"Cadastro Atualizado Com Sucesso!"});
+        return  response.json({"msg":"Cadastro Atualizado Com Sucesso!"})
         
     return locals()
 

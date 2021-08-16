@@ -47,7 +47,7 @@ def usuario():
         db = current.db
         usuario_db = db.auth_user(id_user)
 
-        return  response.json({"dados":usuario_db});
+        return  response.json({"dados":usuario_db})
         
     return locals()
 

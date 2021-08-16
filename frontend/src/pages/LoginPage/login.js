@@ -68,7 +68,7 @@ function Login(){
             return false;
         }
 
-        return false;
+        return true;
 
     }
 

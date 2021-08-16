@@ -1,13 +1,14 @@
 import React,{useEffect, useState} from 'react';
 import * as S from './styled';
 import { useHistory } from "react-router-dom";
-import { toast } from 'react-toastify';
 import { Button, Grid, makeStyles, TextField, FormControl, Select, MenuItem, InputLabel} from '@material-ui/core';
 import { requestUserInfo, updateUserInfo } from './service';
 import Loading from '../../components/Loading';
 import {updateObject} from '../../utils/createUpdateObject';
 import { getGenderType } from '../../utils/genderName';
 import {whosLoged} from '../../services/authentication'
+import { profile } from './constants';
+import { getStandardDate } from '../../utils/formatDate';
 
 function Profile(){
     const classes = useStyles()
@@ -31,13 +32,14 @@ function Profile(){
     let username = '';
 
     const fetchData = async () =>{
-        const res = await requestUserInfo(email);
-        const data = res.data.dados[0];
+        // const res = await requestUserInfo(email);
+        // const data = res.data.dados[0];
+        const data = profile[0]
         setUserInfo(data)
         setUser({
           nome:`${data.first_name}   ${data.last_name}`,
           email: data.email,
-          dob:data.data_nascimento,
+          dob: data.data_nascimento,
           sex: data.genero,
           cpf: data.cpf,
           log: data.logradouro,
@@ -64,6 +66,7 @@ function Profile(){
         const updateUser = updateObject(user);
         console.log(updateUser)
         const res = await updateUserInfo(updateUser);
+        console.log(res)
     }
 
 return (
@@ -89,7 +92,7 @@ return (
                         label="Nome"
                         variant="outlined"
                         name="nome"
-                        defaultValue="Robin James"
+                        defaultValue={userInfo.nome}
                         className={classes.text}
                         onChange={handleChange}
                         InputLabelProps={{ shrink: true }}
@@ -108,21 +111,17 @@ return (
                       />
                       <TextField
                         required
-                        type="date"
                         id="dob"
                         type="date"
-                        defaultValue="1997/04/04"
                         label="Data de Nascimento"
                         variant="outlined"
                         name="dob"
                         className={classes.text}
+                        value={userInfo.dob}
                         onChange={handleChange}
                         InputLabelProps={{ shrink: true }}
                       />
-                      <FormControl
-                        variant="outlined"
-                        className={classes.text}
-                      >
+                      <FormControl variant="outlined" className={classes.text}>
                         <InputLabel id="demo-simple-select-outlined-label">
                           Sexo
                         </InputLabel>

@@ -47,14 +47,14 @@ function HeaderOff(){
                 Entrar
               </Button>
             }
-            {isLogin() && 
+            {/* {isLogin() &&  */}
               <S.Container>
                 <Button color="inherit" onClick={handleClickPesquisa}>Contratar</Button>
                 <Button color="inherit" onClick={handleClickPerfil}>Perfil</Button>
                 <Button color="inherit" onClick={handleLogout}>Logout</Button>
                 {/*<Button color="inherit" onClick={handleClickPassword}>Altera Senha</Button>*/}
               </S.Container>
-            }
+            {/* } */}
           </S.Container>
         </Toolbar>
       </AppBar>
