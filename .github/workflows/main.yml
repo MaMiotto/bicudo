@@ -28,5 +28,5 @@ jobs:
       # - run: git remote set-url origin https://${{secrets.ACCESS_TOKEN}}@github.com/${{secrets.USERNAME}}/bicudo>.git"
       # - run: npm install
       # - run: npm ci
-      - run: cd frontend/ && npm run test1
+      - run: cd frontend/ && npm install && npm run test1
       # - run: npm run lint
