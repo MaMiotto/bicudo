@@ -11,8 +11,8 @@ function Visualizar() {
 
     const handleClickEye = (index) =>{
       const info = orders[index]
-      setData(info)
       setOpen(true);
+      setData(info)
     }
 
     const handleClose = () =>{
@@ -31,10 +31,15 @@ function Visualizar() {
             <HeadTable rows={orders} handleClickEye={handleClickEye} />
           </S.Main>
         </div>
+        {open && data && (
+          <ModalUpdate
+            open={open}
+            handleModal={handleClose}
+            setOpen={setOpen}
+            data={data}
+          />
+        )}
       </S.Container>
-      {/* {open && data && (
-        <ModalUpdate open={open} handleModal={handleClose} setOpen={setOpen} />
-      )} */}
     </>
   );
 }

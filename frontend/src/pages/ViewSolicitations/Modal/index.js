@@ -20,13 +20,12 @@ function getModalStyle() {
 const useStyles = makeStyles(() => ({
   paper: {
     position: "absolute",
-    width: "700px",
+    width: "500px",
     height: "600px",
     backgroundColor: "#FFFFFF",
     borderRadius: "4px",
     margin: "0 auto",
     padding: "25px 35px",
-    margin: "0 auto",
   },
   root: {
     flexGrow: 1,
@@ -45,6 +44,7 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
     });
 
     const handleChange = (e) => {
+      e.preventDefault()
       const name = e.target.name;
       const value = e.target.value;
       setUpdate({ ...data, [name]: value });
@@ -62,7 +62,6 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
 
     const body = (
       <div style={modalStyle} className={classes.paper}>
-        <>
           <S.Header>
             <S.Title>Editar Solicitacao</S.Title>
             <S.RightHeader>
@@ -133,7 +132,8 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
                 </Grid>
               </Grid>
             </S.Main>
-            <S.Footer>
+          </form>
+          <S.Footer>
               <Button
                 onClick={handleModal}
                 style={{
@@ -148,12 +148,12 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
                 <Button
                   variant="contained"
                   color="secondary"
-                  onClick={handleSubmit(false)}
+                  onClick={() => handleSubmit(false)}
                 >
                   Recusar
                 </Button>
                 <Button
-                  onClick={handleSubmit(true)}
+                  onClick={() => handleSubmit(true)}
                   type="submit"
                   color="primary"
                   variant="contained"
@@ -166,14 +166,17 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
                 </Button>
               </S.RightFooter>
             </S.Footer>
-          </form>
-        </>
       </div>
     );
 
   return (
     <div>
-      <Modal open={open} onClose={handleModal}>
+      <Modal
+        open={open}
+        onClose={handleModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
         {body}
       </Modal>
     </div>

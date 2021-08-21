@@ -89,7 +89,7 @@ function HeadTable({rows, handleClickEye}) {
                         );
                       })}
                       <TableCell>
-                        <IconButton onClick={handleClickEye(index)}>
+                        <IconButton onClick={() => handleClickEye(index)}>
                           <VisibilityIcon />
                         </IconButton>
                       </TableCell>

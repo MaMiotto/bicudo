@@ -24,10 +24,10 @@ export const Main = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  width: 624px;
+  width: 500px;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
+  position: relative;
   bottom: 0;
 `;
 
