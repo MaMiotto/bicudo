@@ -29,7 +29,6 @@ function Profile(){
     });
     const email = whosLoged()
     const history = useHistory();
-    let username = '';
 
     const fetchData = async () =>{
         // const res = await requestUserInfo(email);
@@ -64,9 +63,7 @@ function Profile(){
 
     const handleSubmit = async () =>{
         const updateUser = updateObject(user);
-        console.log(updateUser)
         const res = await updateUserInfo(updateUser);
-        console.log(res)
     }
 
 return (

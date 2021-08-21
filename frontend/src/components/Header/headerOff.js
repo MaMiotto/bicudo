@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {AppBar, Toolbar, Typography, Button} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import * as S from './styled';
@@ -8,29 +8,29 @@ function HeaderOff(){
 
     const history = useHistory();
 
-    const handleClickInicio = (props, context) => {
+    const handleClickInicio = () => {
         history.push("/")
     };
 
-    const handleClickEntrar = (props, context) => {
+    const handleClickEntrar = () => {
         history.push("/login")
     };
 
-    const handleClickPerfil = (props, context) => {
+    const handleClickPerfil = () => {
         history.push("/perfil");
     };
 
-    const handleClickPassword = (props, context) => {
-      history.push("change-password");
-    };
-
-    const handleLogout = (props, context) => {
+    const handleLogout = () => {
       logout();
       history.push("/login");
     }
 
-    const handleClickPesquisa = (props, context) => {
+    const handleClickPesquisa = () => {
       history.push("pesquisa");
+    };
+
+    const handleClickVisualizarSolicitacoes = () => {
+      history.push("visualizar-solicitacoes");
     };
 
     return (
@@ -47,14 +47,14 @@ function HeaderOff(){
                 Entrar
               </Button>
             }
-            {/* {isLogin() &&  */}
+            {isLogin() && 
               <S.Container>
                 <Button color="inherit" onClick={handleClickPesquisa}>Contratar</Button>
                 <Button color="inherit" onClick={handleClickPerfil}>Perfil</Button>
+                <Button color="inherit" onClick={handleClickVisualizarSolicitacoes}>Trabalhos</Button>
                 <Button color="inherit" onClick={handleLogout}>Logout</Button>
-                {/*<Button color="inherit" onClick={handleClickPassword}>Altera Senha</Button>*/}
               </S.Container>
-            {/* } */}
+            }
           </S.Container>
         </Toolbar>
       </AppBar>

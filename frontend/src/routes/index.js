@@ -8,6 +8,7 @@ import Profile from '../pages/Profile';
 //import ChangePassword from '../pages/Password';
 import Pesquisa from '../pages/Pesquisa/pesquisa'
 import Contato from '../pages/Contato/contato'
+import Visualizar from '../pages/ViewSolicitations';
 
 function Routes(){
     return (
@@ -18,6 +19,7 @@ function Routes(){
         <Route path='/perfil' component={Profile} exact/>
         <Route path='/pesquisa' component={Pesquisa} exact/>
         <Route path='/solicitar-servico' component={Contato} exact/>
+        <Route path='/visualizar-solicitacoes' component={Visualizar} exact/>
     </Switch>
     )
 }
