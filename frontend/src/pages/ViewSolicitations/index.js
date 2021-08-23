@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HeadTable from "../../components/Table";
 import { orders } from "./constants";
 import ModalUpdate from "./Modal";
@@ -21,12 +21,12 @@ function Visualizar() {
 
   return (
     <>
+      <S.Header>
+        <S.Title>Solicitações de Serviços</S.Title>
+        <p>Todos os Serviços para voce</p>
+      </S.Header>
       <S.Container>
         <div>
-          <S.Header>
-            <S.Title>Solicitações de Serviços</S.Title>
-            <p>Todos os Serviços para voce</p>
-          </S.Header>
           <S.Main>
             <HeadTable rows={orders} handleClickEye={handleClickEye} />
           </S.Main>

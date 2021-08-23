@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
-import Loading from "../../../components/Loading";
+import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { useTheme, Grid, Icon, Modal, TextField, Button} from "@material-ui/core";
@@ -21,7 +20,7 @@ const useStyles = makeStyles(() => ({
   paper: {
     position: "absolute",
     width: "500px",
-    height: "600px",
+    height: "400px",
     backgroundColor: "#FFFFFF",
     borderRadius: "4px",
     margin: "0 auto",
@@ -74,7 +73,7 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
           </S.Header>
           <form
             noValidate="novalidate"
-            style={{ position: "relative", height: "480px", width: "100%" }}
+            style={{ position: "relative", height: "300px", width: "100%" }}
           >
             <S.Main className={classes.root}>
               <Grid container spacing={2}>
@@ -138,7 +137,6 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
                 onClick={handleModal}
                 style={{
                   backgroundColor: "#DDE5F0",
-                  color: theme.palette.info.main,
                 }}
                 variant="outlined"
               >
@@ -158,6 +156,7 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
                   color="primary"
                   variant="contained"
                   style={{
+                    background: 'rgb(0, 128, 255)',
                     color: "#fff",
                     marginLeft: "10px",
                   }}

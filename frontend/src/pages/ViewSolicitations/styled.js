@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const Title = styled.h2`
   font-size: 20px;
   left: 40px;
+  text-align: left;
 `;
 
 export const Main = styled.div`
@@ -24,6 +25,7 @@ export const Header = styled.div`
   margin: auto;
   width: 50%;
   padding: 10px;
+  align: left
 `;
 
 export const Footer = styled.div`

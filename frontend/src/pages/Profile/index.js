@@ -68,15 +68,15 @@ function Profile(){
 
 return (
   <>
+    <S.Header>
+      <S.Title>Dados Pessoais</S.Title>
+      <p>Altere seus dados e salvar eles</p>
+    </S.Header>
     {!loading ? (
       userInfo &&
       user && (
         <S.Container>
           <div>
-            <S.Header>
-              <S.Title>Dados Pessoais</S.Title>
-              <p>Altere seus dados e salvar eles</p>
-            </S.Header>
             <S.Main>
               <div>
                 <form noValidate autoComplete="off">
@@ -109,14 +109,16 @@ return (
                       <TextField
                         required
                         id="dob"
-                        type="date"
+                        type="text"
                         label="Data de Nascimento"
                         variant="outlined"
                         name="dob"
                         className={classes.text}
-                        value={userInfo.dob}
-                        onChange={handleChange}
+                        value={getStandardDate(userInfo.dob)}
                         InputLabelProps={{ shrink: true }}
+                        inputProps={{
+                          readOnly: true,
+                        }}
                       />
                       <FormControl variant="outlined" className={classes.text}>
                         <InputLabel id="demo-simple-select-outlined-label">
@@ -140,9 +142,12 @@ return (
                         type="text"
                         variant="outlined"
                         name="cpf"
-                        defaultValue={userInfo.cpf}
+                        value={userInfo.cpf}
                         className={classes.text}
                         InputLabelProps={{ shrink: true }}
+                        inputProps={{
+                          readOnly: true,
+                        }}
                       />
                     </Grid>
                     <Grid item xs={6}>

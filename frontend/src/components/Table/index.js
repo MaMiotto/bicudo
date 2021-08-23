@@ -30,13 +30,13 @@ function HeadTable({rows, handleClickEye}) {
     {
       id: "cliente",
       label: "Cliente",
-      minWidth: 300,
+      minWidth: 250,
       format: (value) => value.toLocaleString("pt-br"),
     },
     {
       id: "tipo",
       label: "Tipo Serviço",
-      minWidth: 300,
+      minWidth: 250,
       align: "left",
       format: (value) => value.toLocaleString("pt-br"),
     },

@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 
 export const getStandardDate = (date) => {
-    return format(new Date(date), 'MM/dd/yyyy');
+    date = new Date()
+    return format(date, 'dd/MM/yyyy');
 }
