@@ -10,6 +10,8 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { IconButton } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { changeStatus } from "../../utils/changeStatus";
+
 
 const useStyles = makeStyles({
   root: {
@@ -30,15 +32,21 @@ function HeadTable({rows, handleClickEye}) {
     {
       id: "cliente",
       label: "Cliente",
-      minWidth: 250,
+      minWidth: 170,
       format: (value) => value.toLocaleString("pt-br"),
     },
     {
       id: "tipo",
       label: "Tipo Serviço",
-      minWidth: 250,
+      minWidth: 170,
       align: "left",
       format: (value) => value.toLocaleString("pt-br"),
+    },
+    {
+      id: "status",
+      label: "Status",
+      minWidth: 170,
+      format: (value) => changeStatus(value),
     },
   ];
 
@@ -89,9 +97,15 @@ function HeadTable({rows, handleClickEye}) {
                         );
                       })}
                       <TableCell>
-                        <IconButton onClick={() => handleClickEye(index)}>
-                          <VisibilityIcon />
-                        </IconButton>
+                        {row.status === 1 ? (
+                          <IconButton onClick={() => handleClickEye(index)}>
+                            <VisibilityIcon />
+                          </IconButton>
+                        ) : (
+                          <IconButton onClick={() => handleClickEye(index)} disabled>
+                            <VisibilityIcon />
+                          </IconButton>
+                        )}
                       </TableCell>
                     </TableRow>
                   );
