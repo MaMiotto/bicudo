@@ -40,16 +40,43 @@ def cors_allow(action):
 def dados():
 
     def GET(*args, **vars):
-
-        id_user = ''
-        if 'id_user' in vars:
-            id_user = vars['id_user']
-     
-        db = current.db
-        rows = db(db.solicitacao.prestador == id_user).select()
-
-        return  response.json({"dados":rows});
         
+        id_usuario = 2
+        # id_usuario = auth.user.id
+
+        #busca os tipo aí
+        tipos={
+            0:"Nenhum",
+            1:"Pintura",
+            2:"Manutenção",
+            3:"Reparos",
+            4:"Elétrica"
+            }
+
+        dados = []
+
+
+        usuario_db = db.auth_user(id_usuario)
+
+        objetos_solicitacao_prestador=auxi.objetos_solicitacao_lista(id_usuario,"cliente")
+        # dados_solicitacoes=[]
+        
+        #     dados_solicitacoes.append(solicitacao.pega_dados_solicitacao())
+        
+
+        # rows = db(db.solicitacao.cliente == id_usuario).select()
+
+        for solicitacao in objetos_solicitacao_prestador:
+            cliente, prestador, tipo, status, disponibilidade, agendamento = solicitacao.pega_item_solicitacao()
+            nome_cliente = cliente.pega_nome_completo()
+            nome_prestador = prestador.pega_nome_completo()
+
+            dados.append({"cliente": nome_cliente, "prestador": nome_prestador, "tipo": tipos[tipo[0]], "status": status, "disponibilidade": disponibilidade, "agendamento": agendamento})
+
+
+        return  response.json({"dados":dados});
+
+
     return locals()
 
 
