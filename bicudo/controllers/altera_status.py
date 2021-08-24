@@ -52,10 +52,14 @@ def alterar():
         novo_status = ''
         if 'novo_status' in vars:
             novo_status = vars['novo_status']
+            db(db.solicitacao.id==id_solicitacao).update(status=novo_status)
 
-        # auxi.edita_solicitacao(id_solicitacao,"status",novo_status)
+        novo_agendamento = ''
+        if 'novo_agendamento' in vars:
+            novo_agendamento = vars['novo_agendamento']
+            db(db.solicitacao.id==id_solicitacao).update(agendamento=novo_agendamento)
 
-        db(db.solicitacao.id==id_solicitacao).update(status=novo_status)
+        
               
 
         return  response.json({"msg":"Status da Solicitacao Alterado"});
