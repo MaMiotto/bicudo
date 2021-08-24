@@ -29,7 +29,6 @@ def cors_allow(action):
 def api():
 
     def GET(*args, **vars):
-        categorias = ["Pintura", "Eletricista", "Reforma"]
+        categorias = ["Pintura", "Manutenção", "Reparos", "Elétrica"]
         return response.json(categorias)
-    
     return locals()
