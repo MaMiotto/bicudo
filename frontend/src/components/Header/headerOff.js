@@ -33,6 +33,10 @@ function HeaderOff(){
       history.push("visualizar-solicitacoes");
     };
 
+    const handleClickVisualizarSolicitacoesCliente = () => {
+      history.push("visualizar-requerimentos");
+    };
+
     return (
       <AppBar position="static" style={{ background: "#0080ff" }}>
         <Toolbar>
@@ -52,6 +56,7 @@ function HeaderOff(){
                 <Button color="inherit" onClick={handleClickPesquisa}>Contratar</Button>
                 <Button color="inherit" onClick={handleClickPerfil}>Perfil</Button>
                 <Button color="inherit" onClick={handleClickVisualizarSolicitacoes}>Trabalhos</Button>
+                <Button color="inherit" onClick={handleClickVisualizarSolicitacoesCliente}>Solicitações</Button>
                 <Button color="inherit" onClick={handleLogout}>Logout</Button>
               </S.Container>
             }

@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ModalUpdate({ handleModal, open, data, setOpen }) {
+export default function ModalUpdate({ handleModal, open, data, setOpen, index, datas }) {
     const classes = useStyles();
     const theme = useTheme();
     const [modalStyle] = useState(getModalStyle);
@@ -51,11 +51,14 @@ export default function ModalUpdate({ handleModal, open, data, setOpen }) {
 
     const handleSubmit = (value) =>{
         if(value){
-            update.status = 1;
+            update.status = 3;
+            datas[index].status = 3;
             setOpen(false)
         }
         else{
-            update.status = 0
+            update.status = 2;
+            datas[index].status = 2;
+            setOpen(false)
         }
     }
 

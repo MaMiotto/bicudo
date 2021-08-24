@@ -9,6 +9,7 @@ import Profile from '../pages/Profile';
 import Pesquisa from '../pages/Pesquisa/pesquisa'
 import Contato from '../pages/Contato/contato'
 import Visualizar from '../pages/ViewSolicitations';
+import VisualizarCliente from '../pages/ViewClientSolicitations';
 
 function Routes(){
     return (
@@ -20,6 +21,7 @@ function Routes(){
         <Route path='/pesquisa' component={Pesquisa} exact/>
         <Route path='/solicitar-servico' component={Contato} exact/>
         <Route path='/visualizar-solicitacoes' component={Visualizar} exact/>
+        <Route path='/visualizar-requerimentos' component={VisualizarCliente} exact/>
     </Switch>
     )
 }

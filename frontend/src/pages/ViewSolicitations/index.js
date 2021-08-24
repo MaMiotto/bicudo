@@ -4,21 +4,37 @@ import { orders } from "./constants";
 import ModalUpdate from "./Modal";
 import { requestAllServices } from "./service";
 import * as S from "./styled";
+import {isLogin, whosLoged} from '../../services/authentication'
 
 function Visualizar() {
     const [open, setOpen] = useState(false);
-    const [data, setData] = useState(null)
+    const [data, setData] = useState(null);
+    const [datas, setDatas] = useState(null)
+    const [index, setIndex] = useState(-1);
     
     const fetchData = async () =>{
-      const res = await requestAllServices();
-      console.log(res)
-      setData(res.data.data)
+      //const res = await requestAllServices();
+      //setData(res.data.data)
+
+      if(whosLoged() === "jp@x.com"){
+        setDatas([
+          {
+            cliente: "Marcos",
+            prestador: "João Paulo",
+            tipo: "Pintura",
+            disponibilidade: "26/08/2021",
+            agendamento: "teste",
+            status: 1,
+            acao: "what is thats "
+          }
+        ])
+      }
     }
 
     const handleClickEye = (index) =>{
-      const info = orders[index]
+      setIndex(index)
       setOpen(true);
-      setData(info)
+      setData(datas[index])
     }
 
     const handleClose = () =>{
@@ -33,13 +49,13 @@ function Visualizar() {
     <>
       <S.Header>
         <S.Title>Solicitações de Serviços</S.Title>
-        <p>Todos os Serviços para voce</p>
+        <p>Todos os Serviços para você</p>
       </S.Header>
       {/* if not working, change data to ordes just for testing sake */}
-     { data && <S.Container>
+     { datas && <S.Container>
         <div>
           <S.Main>
-            <HeadTable rows={data} handleClickEye={handleClickEye} />
+            <HeadTable rows={datas} handleClickEye={handleClickEye} />
           </S.Main>
         </div>
         {open && data && (
@@ -48,6 +64,8 @@ function Visualizar() {
             handleModal={handleClose}
             setOpen={setOpen}
             data={data}
+            datas={datas}
+            index={index}
           />
         )}
       </S.Container> }
