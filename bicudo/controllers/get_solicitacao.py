@@ -41,12 +41,19 @@ def dados():
 
     def GET(*args, **vars):
         
-        id_usuario = 2
-        # id_usuario = auth.user.id
+        id_usuario = ''
+        if 'id_cliente' in vars:
+            id_usuario = vars['id_cliente']
+            comando = "cliente"
 
+        if 'id_prestador' in vars:
+            id_usuario = vars['id_prestador']
+            comando = "prestador"
+
+        
         #busca os tipo aí
         tipos={
-            0:"Nenhum",
+            0:"Nenhum", 
             1:"Pintura",
             2:"Manutenção",
             3:"Reparos",
@@ -58,7 +65,7 @@ def dados():
 
         usuario_db = db.auth_user(id_usuario)
 
-        objetos_solicitacao_prestador=auxi.objetos_solicitacao_lista(id_usuario,"cliente")
+        objetos_solicitacao_prestador=auxi.objetos_solicitacao_lista(id_usuario,comando)
         # dados_solicitacoes=[]
         
         #     dados_solicitacoes.append(solicitacao.pega_dados_solicitacao())
