@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTheme, Grid, Icon, Modal, TextField, Button} from "@material-ui/core";
 import * as S from "./styled";
+import { updateStatus } from "../service";
 
 function getModalStyle() {
   const top = 50;
@@ -31,7 +32,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ModalUpdate({ handleModal, open, data, setOpen, index, datas }) {
+export default function ModalUpdate({ handleModal, open, data, setOpen, setInfo }) {
     const classes = useStyles();
     const theme = useTheme();
     const [modalStyle] = useState(getModalStyle);
@@ -49,16 +50,20 @@ export default function ModalUpdate({ handleModal, open, data, setOpen, index, d
       setUpdate({ ...data, [name]: value });
     };
 
-    const handleSubmit = (value) =>{
+    const handleSubmit = async (value) =>{
         if(value){
-            update.status = 3;
-            datas[index].status = 3;
-            setOpen(false)
+          const res = await updateStatus(data.id, 2, update.agendamento)
+          if(res){
+            setOpen(false);
+            setInfo(null);
+          }
         }
         else{
-            update.status = 2;
-            datas[index].status = 2;
-            setOpen(false)
+          const res = await updateStatus(data.id, 5, update.agendamento);
+          if(res){
+            setOpen(false);
+            setInfo(null);
+          }
         }
     }
 
