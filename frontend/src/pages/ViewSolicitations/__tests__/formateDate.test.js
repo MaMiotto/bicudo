@@ -10,7 +10,7 @@ describe('Testing the date format that it should return',() =>{
 
     test('should return valid date', () =>{
         const date = new Date("2021-01-31");
-        const answer = '30/01/2021';
+        const answer = '31/01/2021';
         expect(getStandardDate(date)).toEqual(answer);
     })
 
